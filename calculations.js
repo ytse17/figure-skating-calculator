@@ -157,10 +157,10 @@ function parse_elements(){
 
 	if (sum_bv > 0){
 	    jump.bv = parseFloat(sum_bv);
-	    jump.goesov = jump.bv * jump.convertgoe;
+	    jump.goesov = parseFloat(max_bv) * jump.convertgoe;
 	    jump.score = jump.bv + jump.goesov;
       if (jump.rep == "+REP") {jump.score -= (0.3 * parseFloat(bvsov[jname].bv))}
-      if (jump.bonus == "x"){ jump.score *= 1.1; }
+      if (jump.bonus == "x"){ jump.score += (0.1 * jump.bv) }
 	    result.tes.bv += jump.bv;
 	    result.tes.goesov += jump.goesov;
 	    result.tes.score += jump.score;
