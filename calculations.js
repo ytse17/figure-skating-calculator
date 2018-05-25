@@ -180,7 +180,7 @@ function parse_elements(){
 	    flying: (flying == "F") ? true : false,
 	    changefoot: (changefoot == "C") ? true: false,
 	    position: position, level: level,
-	    is_comb: (position == "CoSp2p" || position == "CoSp3p") ? true : false,
+	    is_comb: (position == "CoSp") ? true : false,
 	    goe: getval("spin", i, ".goe"), bv: 0, goesov: 0, score: 0
 	}
 
@@ -222,7 +222,7 @@ function parse_elements(){
 
 	if (! (bvsov[name] === undefined)){
 	    chsq.bv = normalize_float(bvsov[name].bv)
-	    chsq.goesov = chsq.bv * chsq.goe * 5 / 21
+	    chsq.goesov = 5 * chsq.goe * 5 / 21
 	    chsq.score = normalize_float(parseFloat(chsq.bv) + parseFloat(chsq.goesov))
 	}
 	result.elements.chsq[i] = chsq;
