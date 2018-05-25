@@ -1,0 +1,26 @@
+body {
+  
+}
+
+h1 {
+  color: blue;
+  font-family: "Lato",sans-serif;
+}
+
+h2 {
+  color: blue;
+  font-family: "Lato", sans-serif;
+  font-size: 12pt;
+}
+
+table {
+  font-family: "Helvetica", sans-serif;
+}
+
+tr {
+  background-color: lightgray;
+}
+
+td {
+  background-color: lightblue;
+}
