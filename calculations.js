@@ -7,7 +7,7 @@ var result = {}
 
 function initialize(){
     result = {
-	displine: "Men", segment: "SP",
+	discipline: "Men", segment: "SP",
 	elements: {
 	    jumps: [],
 	    spins: [],
@@ -20,14 +20,14 @@ function initialize(){
 	tes: { bv: 0, goesov: 0, score: 0, comment: ""}
     }
     rules = {}
-    repetation_jump = {}
+    repetition_jump = {}
     for (var i = 2; i<=4; i++){   // yet:
-	repetation_jump[i + "A"] = 0;
-	repetation_jump[i + "Lz"] = 0;
-	repetation_jump[i + "F"] = 0;
-	repetation_jump[i + "Lo"] = 0;
-	repetation_jump[i + "S"] = 0;
-	repetation_jump[i + "T"] = 0;
+	repetition_jump[i + "A"] = 0;
+	repetition_jump[i + "Lz"] = 0;
+	repetition_jump[i + "F"] = 0;
+	repetition_jump[i + "Lo"] = 0;
+	repetition_jump[i + "S"] = 0;
+	repetition_jump[i + "T"] = 0;
     }
 }
 ////////////////////////////////////////////////////////////////
@@ -106,7 +106,7 @@ function parse_elements(){
 	jump.bonus = getval("jump", i, ".bonus")
 	jump.goe = getval("jump", i, ".goe")
   jump.rep = getval("jump", i, ".repeated")
-  //jump.convertgoe = parseFloat(jump.goe) * 5/30
+  if (parseFloat(jump.goe) < -3) {jump.goe = -3}
 
 	// bv
 	var sum_bv = 0;
@@ -324,7 +324,7 @@ function check_rules(){
 		rev1 = rev(elem.executed[1].jname)
 		rev2 = rev(elem.executed[2].jname)
 
-		switch (result.displine){
+		switch (result.discipline){
 		case "Men":
 		    if ((rev1 == 2 && rev2 == 3) || (rev1 == 3 && rev2 == 2) ||
 			(rev1 == 3 && rev2 == 3) ||
@@ -347,7 +347,7 @@ function check_rules(){
 	    // axel
 	    if (elem.type == "solo" && is_axel(elem.executed[1].jname)){
 		rev1 = rev(elem.executed[1].jname)
-		switch (result.displine){
+		switch (result.discipline){
 		case "Men":
 		    if (rev1 < 2){ elem.comment = "* invalid axel" } break;
 		case "Ladies":
@@ -373,7 +373,7 @@ function check_rules(){
 	    if (elem.changefoot && !elem.is_comb){ n_cf_single_position += 1}
 	    if (elem.changefoot && elem.is_comb){ n_ccosp += 1 }
 	}
-	if (result.displine == "Ladies"){
+	if (result.discipline == "Ladies"){
 	    if (n_LSp < 1){ result.tes.comment += "* [SPIN] LSp required for Ladies\n" }
 	} else {
 	    if (n_cf_single_position < 1){ result.tes.comment += "* [SPIN] Single Position w/changefoot Spin required for Men\n"}
@@ -388,18 +388,18 @@ function check_rules(){
 	break;
     case "FS":
 	// jump
-	if (result.displine == "Ladies"){ disable_element("jump", 8); }
+	if (result.discipline == "Ladies"){ disable_element("jump", 8); }
     }
 
 }
 
-function update_repetation_jump(){
+function update_repetition_jump(){
     ar = ['A', 'Lz', 'F', 'Lo', 'S', 'T'];
     for (var i=2; i<=4; i++){
 	len = ar.length;
 	for (var j=0; j<len; j++){
 	    // alert(".jr_" + i + ar[j])
-	    settext("repetation_jump", "", ".jr_" + i + ar[j], repetation_jump[i + ar[j]]);
+	    settext("repetition_jump", "", ".jr_" + i + ar[j], repetition_jump[i + ar[j]]);
 	}
     }
 }
@@ -444,14 +444,14 @@ function load_score (){
 
 function recalc(){
     initialize();
-    result.displine = $("input[name='displine']:checked").val();
+    result.discipline = $("input[name='discipline']:checked").val();
     result.segment = $("input[name='segment']:checked").val();
 
     parse_elements();
 
     check_rules();
     update_elements();
-    update_repetation_jump();
+    update_repetition_jump();
     // parse_components();
 
 }
