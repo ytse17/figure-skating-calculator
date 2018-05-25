@@ -1,0 +1,1478 @@
+
+<html>
+<head>
+ <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript" src="bvs.js"></script>
+<script type="text/javascript" src="calculations.js">
+</script>
+</head>
+
+
+
+<body onLoad="recalc();">
+
+<h1>proposed ISU scoring system calculator</h1>
+
+
+<h2>adapted by @yeelingtse from http://fisk8-score-calc.herokuapp.com/</h2>
+
+<table border="1">
+  <tr>
+    <th>Type</th><th>Element</th><th>Rep?</th><th>Bonus?</th><th>GOE</th>
+    <th>Name</th><th>New BV</th><th>New GOE</th><th>New Score</th>
+  </tr>
+
+  <tr id="jump1">
+    <td>Jump1</td>
+    <td>
+      <!-- jump type (solo/comb2/bomc3) -->
+      <select class="type" onChange="recalc()";>
+	<option value="solo">solo</option>
+	<option value="comb2">comb2</option>
+	<option value="comb3">comb3</option>
+      </select>
+      <!-- First jump -->
+      <span class="first">
+	<select class="jname" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="4A">4A</option>
+<option value="4Lz">4Lz</option>
+<option value="4F">4F</option>
+<option value="4Lo">4Lo</option>
+<option value="4S">4S</option>
+<option value="4T">4T</option>
+<option value="3A">3A</option>
+<option value="3Lz">3Lz</option>
+<option value="3F">3F</option>
+<option value="3Lo">3Lo</option>
+<option value="3S">3S</option>
+<option value="3T">3T</option>
+<option value="2A">2A</option>
+<option value="2Lz">2Lz</option>
+<option value="2F">2F</option>
+<option value="2Lo">2Lo</option>
+<option value="2S">2S</option>
+<option value="2T">2T</option>
+<option value="1A">1A</option>
+<option value="1Lz">1Lz</option>
+<option value="1F">1F</option>
+<option value="1Lo">1Lo</option>
+<option value="1S">1S</option>
+<option value="1T">1T</option>
+	</select>
+	<select class="edge" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="!">!</option>
+	  <option value="e">e</option>
+	</select>
+	<select class="ur" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="<">&lt;</option>
+	  <option value="<<">&lt;&lt;</option>
+	</select>
+      </span>
+
+      <!-- Second jump -->
+      <span class="second">
+	-
+	<select class="jname" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="4A">4A</option>
+<option value="4Lz">4Lz</option>
+<option value="4F">4F</option>
+<option value="4Lo">4Lo</option>
+<option value="4S">4S</option>
+<option value="4T">4T</option>
+<option value="3A">3A</option>
+<option value="3Lz">3Lz</option>
+<option value="3F">3F</option>
+<option value="3Lo">3Lo</option>
+<option value="3S">3S</option>
+<option value="3T">3T</option>
+<option value="2A">2A</option>
+<option value="2Lz">2Lz</option>
+<option value="2F">2F</option>
+<option value="2Lo">2Lo</option>
+<option value="2S">2S</option>
+<option value="2T">2T</option>
+<option value="1A">1A</option>
+<option value="1Lz">1Lz</option>
+<option value="1F">1F</option>
+<option value="1Lo">1Lo</option>
+<option value="1S">1S</option>
+<option value="1T">1T</option>
+	</select>
+	<select class="edge" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="!">!</option>
+	  <option value="e">e</option>
+	</select>
+	<select class="ur" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="<">&lt;</option>
+	  <option value="<<">&lt;&lt;</option>
+	</select>
+      </span>
+
+      <!-- third jump -->
+      <span class="third">
+	-
+	<select class="jname" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="4A">4A</option>
+<option value="4Lz">4Lz</option>
+<option value="4F">4F</option>
+<option value="4Lo">4Lo</option>
+<option value="4S">4S</option>
+<option value="4T">4T</option>
+<option value="3A">3A</option>
+<option value="3Lz">3Lz</option>
+<option value="3F">3F</option>
+<option value="3Lo">3Lo</option>
+<option value="3S">3S</option>
+<option value="3T">3T</option>
+<option value="2A">2A</option>
+<option value="2Lz">2Lz</option>
+<option value="2F">2F</option>
+<option value="2Lo">2Lo</option>
+<option value="2S">2S</option>
+<option value="2T">2T</option>
+<option value="1A">1A</option>
+<option value="1Lz">1Lz</option>
+<option value="1F">1F</option>
+<option value="1Lo">1Lo</option>
+<option value="1S">1S</option>
+<option value="1T">1T</option>
+	</select>
+	<select class="edge" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="!">!</option>
+	  <option value="e">e</option>
+	</select>
+	<select class="ur" onChange="recalc()">
+	  <option value=""></option>
+	<option value="<">&lt;</option>
+	  <option value="<<">&lt;&lt;</option>
+	</select>
+      </span>
+    </td>
+    <td>
+      <select class="repeated" onChange="recalc()">
+	<option value=""></option>
+	<option value="+REP">+REP</option>
+      </select>
+    </td>
+    <td>
+      <select class="bonus" onChange="recalc()">
+	<option value=""></option>
+	<option value="x">x</option>
+      </select>
+    </td>
+    <td>
+	<input class="goe" onChange="recalc()" type="number">
+</input>
+    </td>
+    <td><span class="name"></span>
+    <td><span class="bv"></span>
+    <td><span class="goesov"></span>
+    <td><span class="score"></span>
+
+  </tr>
+
+
+  <tr id="jump2">
+    <td>Jump2</td>
+    <td>
+      <!-- jump type (solo/comb2/bomc3) -->
+      <select class="type" onChange="recalc()";>
+	<option value="solo">solo</option>
+	<option value="comb2">comb2</option>
+	<option value="comb3">comb3</option>
+      </select>
+      <!-- First jump -->
+      <span class="first">
+	<select class="jname" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="4A">4A</option>
+<option value="4Lz">4Lz</option>
+<option value="4F">4F</option>
+<option value="4Lo">4Lo</option>
+<option value="4S">4S</option>
+<option value="4T">4T</option>
+<option value="3A">3A</option>
+<option value="3Lz">3Lz</option>
+<option value="3F">3F</option>
+<option value="3Lo">3Lo</option>
+<option value="3S">3S</option>
+<option value="3T">3T</option>
+<option value="2A">2A</option>
+<option value="2Lz">2Lz</option>
+<option value="2F">2F</option>
+<option value="2Lo">2Lo</option>
+<option value="2S">2S</option>
+<option value="2T">2T</option>
+<option value="1A">1A</option>
+<option value="1Lz">1Lz</option>
+<option value="1F">1F</option>
+<option value="1Lo">1Lo</option>
+<option value="1S">1S</option>
+<option value="1T">1T</option>
+	</select>
+	<select class="edge" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="!">!</option>
+	  <option value="e">e</option>
+	</select>
+	<select class="ur" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="<">&lt;</option>
+	  <option value="<<">&lt;&lt;</option>
+	</select>
+      </span>
+
+      <!-- Second jump -->
+      <span class="second">
+	-
+	<select class="jname" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="4A">4A</option>
+<option value="4Lz">4Lz</option>
+<option value="4F">4F</option>
+<option value="4Lo">4Lo</option>
+<option value="4S">4S</option>
+<option value="4T">4T</option>
+<option value="3A">3A</option>
+<option value="3Lz">3Lz</option>
+<option value="3F">3F</option>
+<option value="3Lo">3Lo</option>
+<option value="3S">3S</option>
+<option value="3T">3T</option>
+<option value="2A">2A</option>
+<option value="2Lz">2Lz</option>
+<option value="2F">2F</option>
+<option value="2Lo">2Lo</option>
+<option value="2S">2S</option>
+<option value="2T">2T</option>
+<option value="1A">1A</option>
+<option value="1Lz">1Lz</option>
+<option value="1F">1F</option>
+<option value="1Lo">1Lo</option>
+<option value="1S">1S</option>
+<option value="1T">1T</option>
+	</select>
+	<select class="edge" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="!">!</option>
+	  <option value="e">e</option>
+	</select>
+	<select class="ur" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="<">&lt;</option>
+	  <option value="<<">&lt;&lt;</option>
+	</select>
+      </span>
+
+      <!-- thid jump -->
+      <span class="third">
+	-
+	<select class="jname" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="4A">4A</option>
+<option value="4Lz">4Lz</option>
+<option value="4F">4F</option>
+<option value="4Lo">4Lo</option>
+<option value="4S">4S</option>
+<option value="4T">4T</option>
+<option value="3A">3A</option>
+<option value="3Lz">3Lz</option>
+<option value="3F">3F</option>
+<option value="3Lo">3Lo</option>
+<option value="3S">3S</option>
+<option value="3T">3T</option>
+<option value="2A">2A</option>
+<option value="2Lz">2Lz</option>
+<option value="2F">2F</option>
+<option value="2Lo">2Lo</option>
+<option value="2S">2S</option>
+<option value="2T">2T</option>
+<option value="1A">1A</option>
+<option value="1Lz">1Lz</option>
+<option value="1F">1F</option>
+<option value="1Lo">1Lo</option>
+<option value="1S">1S</option>
+<option value="1T">1T</option>
+	</select>
+	<select class="edge" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="!">!</option>
+	  <option value="e">e</option>
+	</select>
+	<select class="ur" onChange="recalc()">
+	  <option value=""></option>
+	<option value="<">&lt;</option>
+	  <option value="<<">&lt;&lt;</option>
+	</select>
+      </span>
+    </td>
+    <td>
+      <select class="repeated" onChange="recalc()">
+	<option value=""></option>
+	<option value="+REP">+REP</option>
+      </select>
+    </td>
+    <td>
+      <select class="bonus" onChange="recalc()">
+	<option value=""></option>
+	<option value="x">x</option>
+      </select>
+    </td>
+    <td>
+      <input class="goe" onChange="recalc()" type="number">
+    </input>
+    </td>
+    <td><span class="name"></span>
+    <td><span class="bv"></span>
+    <td><span class="goesov"></span>
+    <td><span class="score"></span>
+
+  </tr>
+
+
+  <tr id="jump3">
+    <td>Jump3</td>
+    <td>
+      <!-- jump type (solo/comb2/bomc3) -->
+      <select class="type" onChange="recalc()";>
+	<option value="solo">solo</option>
+	<option value="comb2">comb2</option>
+	<option value="comb3">comb3</option>
+      </select>
+      <!-- First jump -->
+      <span class="first">
+	<select class="jname" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="4A">4A</option>
+<option value="4Lz">4Lz</option>
+<option value="4F">4F</option>
+<option value="4Lo">4Lo</option>
+<option value="4S">4S</option>
+<option value="4T">4T</option>
+<option value="3A">3A</option>
+<option value="3Lz">3Lz</option>
+<option value="3F">3F</option>
+<option value="3Lo">3Lo</option>
+<option value="3S">3S</option>
+<option value="3T">3T</option>
+<option value="2A">2A</option>
+<option value="2Lz">2Lz</option>
+<option value="2F">2F</option>
+<option value="2Lo">2Lo</option>
+<option value="2S">2S</option>
+<option value="2T">2T</option>
+<option value="1A">1A</option>
+<option value="1Lz">1Lz</option>
+<option value="1F">1F</option>
+<option value="1Lo">1Lo</option>
+<option value="1S">1S</option>
+<option value="1T">1T</option>
+	</select>
+	<select class="edge" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="!">!</option>
+	  <option value="e">e</option>
+	</select>
+	<select class="ur" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="<">&lt;</option>
+	  <option value="<<">&lt;&lt;</option>
+	</select>
+      </span>
+
+      <!-- Second jump -->
+      <span class="second">
+	-
+	<select class="jname" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="4A">4A</option>
+<option value="4Lz">4Lz</option>
+<option value="4F">4F</option>
+<option value="4Lo">4Lo</option>
+<option value="4S">4S</option>
+<option value="4T">4T</option>
+<option value="3A">3A</option>
+<option value="3Lz">3Lz</option>
+<option value="3F">3F</option>
+<option value="3Lo">3Lo</option>
+<option value="3S">3S</option>
+<option value="3T">3T</option>
+<option value="2A">2A</option>
+<option value="2Lz">2Lz</option>
+<option value="2F">2F</option>
+<option value="2Lo">2Lo</option>
+<option value="2S">2S</option>
+<option value="2T">2T</option>
+<option value="1A">1A</option>
+<option value="1Lz">1Lz</option>
+<option value="1F">1F</option>
+<option value="1Lo">1Lo</option>
+<option value="1S">1S</option>
+<option value="1T">1T</option>
+	</select>
+	<select class="edge" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="!">!</option>
+	  <option value="e">e</option>
+	</select>
+	<select class="ur" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="<">&lt;</option>
+	  <option value="<<">&lt;&lt;</option>
+	</select>
+      </span>
+
+      <!-- thid jump -->
+      <span class="third">
+	-
+	<select class="jname" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="4A">4A</option>
+<option value="4Lz">4Lz</option>
+<option value="4F">4F</option>
+<option value="4Lo">4Lo</option>
+<option value="4S">4S</option>
+<option value="4T">4T</option>
+<option value="3A">3A</option>
+<option value="3Lz">3Lz</option>
+<option value="3F">3F</option>
+<option value="3Lo">3Lo</option>
+<option value="3S">3S</option>
+<option value="3T">3T</option>
+<option value="2A">2A</option>
+<option value="2Lz">2Lz</option>
+<option value="2F">2F</option>
+<option value="2Lo">2Lo</option>
+<option value="2S">2S</option>
+<option value="2T">2T</option>
+<option value="1A">1A</option>
+<option value="1Lz">1Lz</option>
+<option value="1F">1F</option>
+<option value="1Lo">1Lo</option>
+<option value="1S">1S</option>
+<option value="1T">1T</option>
+	</select>
+	<select class="edge" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="!">!</option>
+	  <option value="e">e</option>
+	</select>
+	<select class="ur" onChange="recalc()">
+	  <option value=""></option>
+	<option value="<">&lt;</option>
+	  <option value="<<">&lt;&lt;</option>
+	</select>
+      </span>
+    </td>
+    <td>
+      <select class="repeated" onChange="recalc()">
+	<option value=""></option>
+	<option value="+REP">+REP</option>
+      </select>
+    </td>
+    <td>
+      <select class="bonus" onChange="recalc()">
+	<option value=""></option>
+	<option value="x">x</option>
+      </select>
+    </td>
+    <td>
+      <input class="goe" onChange="recalc()" type="number">
+    </input>
+    </td>
+    <td><span class="name"></span>
+    <td><span class="bv"></span>
+    <td><span class="goesov"></span>
+    <td><span class="score"></span>
+
+  </tr>
+
+
+  <tr id="jump4">
+    <td>Jump4</td>
+    <td>
+      <!-- jump type (solo/comb2/bomc3) -->
+      <select class="type" onChange="recalc()";>
+	<option value="solo">solo</option>
+	<option value="comb2">comb2</option>
+	<option value="comb3">comb3</option>
+      </select>
+      <!-- First jump -->
+      <span class="first">
+	<select class="jname" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="4A">4A</option>
+<option value="4Lz">4Lz</option>
+<option value="4F">4F</option>
+<option value="4Lo">4Lo</option>
+<option value="4S">4S</option>
+<option value="4T">4T</option>
+<option value="3A">3A</option>
+<option value="3Lz">3Lz</option>
+<option value="3F">3F</option>
+<option value="3Lo">3Lo</option>
+<option value="3S">3S</option>
+<option value="3T">3T</option>
+<option value="2A">2A</option>
+<option value="2Lz">2Lz</option>
+<option value="2F">2F</option>
+<option value="2Lo">2Lo</option>
+<option value="2S">2S</option>
+<option value="2T">2T</option>
+<option value="1A">1A</option>
+<option value="1Lz">1Lz</option>
+<option value="1F">1F</option>
+<option value="1Lo">1Lo</option>
+<option value="1S">1S</option>
+<option value="1T">1T</option>
+	</select>
+	<select class="edge" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="!">!</option>
+	  <option value="e">e</option>
+	</select>
+	<select class="ur" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="<">&lt;</option>
+	  <option value="<<">&lt;&lt;</option>
+	</select>
+      </span>
+
+      <!-- Second jump -->
+      <span class="second">
+	-
+	<select class="jname" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="4A">4A</option>
+<option value="4Lz">4Lz</option>
+<option value="4F">4F</option>
+<option value="4Lo">4Lo</option>
+<option value="4S">4S</option>
+<option value="4T">4T</option>
+<option value="3A">3A</option>
+<option value="3Lz">3Lz</option>
+<option value="3F">3F</option>
+<option value="3Lo">3Lo</option>
+<option value="3S">3S</option>
+<option value="3T">3T</option>
+<option value="2A">2A</option>
+<option value="2Lz">2Lz</option>
+<option value="2F">2F</option>
+<option value="2Lo">2Lo</option>
+<option value="2S">2S</option>
+<option value="2T">2T</option>
+<option value="1A">1A</option>
+<option value="1Lz">1Lz</option>
+<option value="1F">1F</option>
+<option value="1Lo">1Lo</option>
+<option value="1S">1S</option>
+<option value="1T">1T</option>
+	</select>
+	<select class="edge" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="!">!</option>
+	  <option value="e">e</option>
+	</select>
+	<select class="ur" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="<">&lt;</option>
+	  <option value="<<">&lt;&lt;</option>
+	</select>
+      </span>
+
+      <!-- thid jump -->
+      <span class="third">
+	-
+	<select class="jname" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="4A">4A</option>
+<option value="4Lz">4Lz</option>
+<option value="4F">4F</option>
+<option value="4Lo">4Lo</option>
+<option value="4S">4S</option>
+<option value="4T">4T</option>
+<option value="3A">3A</option>
+<option value="3Lz">3Lz</option>
+<option value="3F">3F</option>
+<option value="3Lo">3Lo</option>
+<option value="3S">3S</option>
+<option value="3T">3T</option>
+<option value="2A">2A</option>
+<option value="2Lz">2Lz</option>
+<option value="2F">2F</option>
+<option value="2Lo">2Lo</option>
+<option value="2S">2S</option>
+<option value="2T">2T</option>
+<option value="1A">1A</option>
+<option value="1Lz">1Lz</option>
+<option value="1F">1F</option>
+<option value="1Lo">1Lo</option>
+<option value="1S">1S</option>
+<option value="1T">1T</option>
+	</select>
+	<select class="edge" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="!">!</option>
+	  <option value="e">e</option>
+	</select>
+	<select class="ur" onChange="recalc()">
+	  <option value=""></option>
+	<option value="<">&lt;</option>
+	  <option value="<<">&lt;&lt;</option>
+	</select>
+      </span>
+    </td>
+    <td>
+      <select class="repeated" onChange="recalc()">
+	<option value=""></option>
+	<option value="+REP">+REP</option>
+      </select>
+    </td>
+    <td>
+      <select class="bonus" onChange="recalc()">
+	<option value=""></option>
+	<option value="x">x</option>
+      </select>
+    </td>
+    <td>
+      <input class="goe" onChange="recalc()" type="number">
+    </input>
+    </td>
+    <td><span class="name"></span>
+    <td><span class="bv"></span>
+    <td><span class="goesov"></span>
+    <td><span class="score"></span>
+
+  </tr>
+
+
+  <tr id="jump5">
+    <td>Jump5</td>
+    <td>
+      <!-- jump type (solo/comb2/bomc3) -->
+      <select class="type" onChange="recalc()";>
+	<option value="solo">solo</option>
+	<option value="comb2">comb2</option>
+	<option value="comb3">comb3</option>
+      </select>
+      <!-- First jump -->
+      <span class="first">
+	<select class="jname" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="4A">4A</option>
+<option value="4Lz">4Lz</option>
+<option value="4F">4F</option>
+<option value="4Lo">4Lo</option>
+<option value="4S">4S</option>
+<option value="4T">4T</option>
+<option value="3A">3A</option>
+<option value="3Lz">3Lz</option>
+<option value="3F">3F</option>
+<option value="3Lo">3Lo</option>
+<option value="3S">3S</option>
+<option value="3T">3T</option>
+<option value="2A">2A</option>
+<option value="2Lz">2Lz</option>
+<option value="2F">2F</option>
+<option value="2Lo">2Lo</option>
+<option value="2S">2S</option>
+<option value="2T">2T</option>
+<option value="1A">1A</option>
+<option value="1Lz">1Lz</option>
+<option value="1F">1F</option>
+<option value="1Lo">1Lo</option>
+<option value="1S">1S</option>
+<option value="1T">1T</option>
+	</select>
+	<select class="edge" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="!">!</option>
+	  <option value="e">e</option>
+	</select>
+	<select class="ur" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="<">&lt;</option>
+	  <option value="<<">&lt;&lt;</option>
+	</select>
+      </span>
+
+      <!-- Second jump -->
+      <span class="second">
+	-
+	<select class="jname" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="4A">4A</option>
+<option value="4Lz">4Lz</option>
+<option value="4F">4F</option>
+<option value="4Lo">4Lo</option>
+<option value="4S">4S</option>
+<option value="4T">4T</option>
+<option value="3A">3A</option>
+<option value="3Lz">3Lz</option>
+<option value="3F">3F</option>
+<option value="3Lo">3Lo</option>
+<option value="3S">3S</option>
+<option value="3T">3T</option>
+<option value="2A">2A</option>
+<option value="2Lz">2Lz</option>
+<option value="2F">2F</option>
+<option value="2Lo">2Lo</option>
+<option value="2S">2S</option>
+<option value="2T">2T</option>
+<option value="1A">1A</option>
+<option value="1Lz">1Lz</option>
+<option value="1F">1F</option>
+<option value="1Lo">1Lo</option>
+<option value="1S">1S</option>
+<option value="1T">1T</option>
+	</select>
+	<select class="edge" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="!">!</option>
+	  <option value="e">e</option>
+	</select>
+	<select class="ur" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="<">&lt;</option>
+	  <option value="<<">&lt;&lt;</option>
+	</select>
+      </span>
+
+      <!-- thid jump -->
+      <span class="third">
+	-
+	<select class="jname" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="4A">4A</option>
+<option value="4Lz">4Lz</option>
+<option value="4F">4F</option>
+<option value="4Lo">4Lo</option>
+<option value="4S">4S</option>
+<option value="4T">4T</option>
+<option value="3A">3A</option>
+<option value="3Lz">3Lz</option>
+<option value="3F">3F</option>
+<option value="3Lo">3Lo</option>
+<option value="3S">3S</option>
+<option value="3T">3T</option>
+<option value="2A">2A</option>
+<option value="2Lz">2Lz</option>
+<option value="2F">2F</option>
+<option value="2Lo">2Lo</option>
+<option value="2S">2S</option>
+<option value="2T">2T</option>
+<option value="1A">1A</option>
+<option value="1Lz">1Lz</option>
+<option value="1F">1F</option>
+<option value="1Lo">1Lo</option>
+<option value="1S">1S</option>
+<option value="1T">1T</option>
+	</select>
+	<select class="edge" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="!">!</option>
+	  <option value="e">e</option>
+	</select>
+	<select class="ur" onChange="recalc()">
+	  <option value=""></option>
+	<option value="<">&lt;</option>
+	  <option value="<<">&lt;&lt;</option>
+	</select>
+      </span>
+    </td>
+    <td>
+      <select class="repeated" onChange="recalc()">
+	<option value=""></option>
+	<option value="+REP">+REP</option>
+      </select>
+    </td>
+    <td>
+      <select class="bonus" onChange="recalc()">
+	<option value=""></option>
+	<option value="x">x</option>
+      </select>
+    </td>
+    <td>
+      <input class="goe" onChange="recalc()" type="number">
+    </input>
+    </td>
+    <td><span class="name"></span>
+    <td><span class="bv"></span>
+    <td><span class="goesov"></span>
+    <td><span class="score"></span>
+
+  </tr>
+
+
+  <tr id="jump6">
+    <td>Jump6</td>
+    <td>
+      <!-- jump type (solo/comb2/bomc3) -->
+      <select class="type" onChange="recalc()";>
+	<option value="solo">solo</option>
+	<option value="comb2">comb2</option>
+	<option value="comb3">comb3</option>
+      </select>
+      <!-- First jump -->
+      <span class="first">
+	<select class="jname" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="4A">4A</option>
+<option value="4Lz">4Lz</option>
+<option value="4F">4F</option>
+<option value="4Lo">4Lo</option>
+<option value="4S">4S</option>
+<option value="4T">4T</option>
+<option value="3A">3A</option>
+<option value="3Lz">3Lz</option>
+<option value="3F">3F</option>
+<option value="3Lo">3Lo</option>
+<option value="3S">3S</option>
+<option value="3T">3T</option>
+<option value="2A">2A</option>
+<option value="2Lz">2Lz</option>
+<option value="2F">2F</option>
+<option value="2Lo">2Lo</option>
+<option value="2S">2S</option>
+<option value="2T">2T</option>
+<option value="1A">1A</option>
+<option value="1Lz">1Lz</option>
+<option value="1F">1F</option>
+<option value="1Lo">1Lo</option>
+<option value="1S">1S</option>
+<option value="1T">1T</option>
+	</select>
+	<select class="edge" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="!">!</option>
+	  <option value="e">e</option>
+	</select>
+	<select class="ur" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="<">&lt;</option>
+	  <option value="<<">&lt;&lt;</option>
+	</select>
+      </span>
+
+      <!-- Second jump -->
+      <span class="second">
+	-
+	<select class="jname" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="4A">4A</option>
+<option value="4Lz">4Lz</option>
+<option value="4F">4F</option>
+<option value="4Lo">4Lo</option>
+<option value="4S">4S</option>
+<option value="4T">4T</option>
+<option value="3A">3A</option>
+<option value="3Lz">3Lz</option>
+<option value="3F">3F</option>
+<option value="3Lo">3Lo</option>
+<option value="3S">3S</option>
+<option value="3T">3T</option>
+<option value="2A">2A</option>
+<option value="2Lz">2Lz</option>
+<option value="2F">2F</option>
+<option value="2Lo">2Lo</option>
+<option value="2S">2S</option>
+<option value="2T">2T</option>
+<option value="1A">1A</option>
+<option value="1Lz">1Lz</option>
+<option value="1F">1F</option>
+<option value="1Lo">1Lo</option>
+<option value="1S">1S</option>
+<option value="1T">1T</option>
+	</select>
+	<select class="edge" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="!">!</option>
+	  <option value="e">e</option>
+	</select>
+	<select class="ur" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="<">&lt;</option>
+	  <option value="<<">&lt;&lt;</option>
+	</select>
+      </span>
+
+      <!-- thid jump -->
+      <span class="third">
+	-
+	<select class="jname" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="4A">4A</option>
+<option value="4Lz">4Lz</option>
+<option value="4F">4F</option>
+<option value="4Lo">4Lo</option>
+<option value="4S">4S</option>
+<option value="4T">4T</option>
+<option value="3A">3A</option>
+<option value="3Lz">3Lz</option>
+<option value="3F">3F</option>
+<option value="3Lo">3Lo</option>
+<option value="3S">3S</option>
+<option value="3T">3T</option>
+<option value="2A">2A</option>
+<option value="2Lz">2Lz</option>
+<option value="2F">2F</option>
+<option value="2Lo">2Lo</option>
+<option value="2S">2S</option>
+<option value="2T">2T</option>
+<option value="1A">1A</option>
+<option value="1Lz">1Lz</option>
+<option value="1F">1F</option>
+<option value="1Lo">1Lo</option>
+<option value="1S">1S</option>
+<option value="1T">1T</option>
+	</select>
+	<select class="edge" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="!">!</option>
+	  <option value="e">e</option>
+	</select>
+	<select class="ur" onChange="recalc()">
+	  <option value=""></option>
+	<option value="<">&lt;</option>
+	  <option value="<<">&lt;&lt;</option>
+	</select>
+      </span>
+    </td>
+    <td>
+      <select class="repeated" onChange="recalc()">
+	<option value=""></option>
+	<option value="+REP">+REP</option>
+      </select>
+    </td>
+    <td>
+      <select class="bonus" onChange="recalc()">
+	<option value=""></option>
+	<option value="x">x</option>
+      </select>
+    </td>
+    <td>
+      <input class="goe" onChange="recalc()" type="number">
+    </input>
+    </td>
+    <td><span class="name"></span>
+    <td><span class="bv"></span>
+    <td><span class="goesov"></span>
+    <td><span class="score"></span>
+
+  </tr>
+
+
+  <tr id="jump7">
+    <td>Jump7</td>
+    <td>
+      <!-- jump type (solo/comb2/bomc3) -->
+      <select class="type" onChange="recalc()";>
+	<option value="solo">solo</option>
+	<option value="comb2">comb2</option>
+	<option value="comb3">comb3</option>
+      </select>
+      <!-- First jump -->
+      <span class="first">
+	<select class="jname" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="4A">4A</option>
+<option value="4Lz">4Lz</option>
+<option value="4F">4F</option>
+<option value="4Lo">4Lo</option>
+<option value="4S">4S</option>
+<option value="4T">4T</option>
+<option value="3A">3A</option>
+<option value="3Lz">3Lz</option>
+<option value="3F">3F</option>
+<option value="3Lo">3Lo</option>
+<option value="3S">3S</option>
+<option value="3T">3T</option>
+<option value="2A">2A</option>
+<option value="2Lz">2Lz</option>
+<option value="2F">2F</option>
+<option value="2Lo">2Lo</option>
+<option value="2S">2S</option>
+<option value="2T">2T</option>
+<option value="1A">1A</option>
+<option value="1Lz">1Lz</option>
+<option value="1F">1F</option>
+<option value="1Lo">1Lo</option>
+<option value="1S">1S</option>
+<option value="1T">1T</option>
+	</select>
+	<select class="edge" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="!">!</option>
+	  <option value="e">e</option>
+	</select>
+	<select class="ur" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="<">&lt;</option>
+	  <option value="<<">&lt;&lt;</option>
+	</select>
+      </span>
+
+      <!-- Second jump -->
+      <span class="second">
+	-
+	<select class="jname" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="4A">4A</option>
+<option value="4Lz">4Lz</option>
+<option value="4F">4F</option>
+<option value="4Lo">4Lo</option>
+<option value="4S">4S</option>
+<option value="4T">4T</option>
+<option value="3A">3A</option>
+<option value="3Lz">3Lz</option>
+<option value="3F">3F</option>
+<option value="3Lo">3Lo</option>
+<option value="3S">3S</option>
+<option value="3T">3T</option>
+<option value="2A">2A</option>
+<option value="2Lz">2Lz</option>
+<option value="2F">2F</option>
+<option value="2Lo">2Lo</option>
+<option value="2S">2S</option>
+<option value="2T">2T</option>
+<option value="1A">1A</option>
+<option value="1Lz">1Lz</option>
+<option value="1F">1F</option>
+<option value="1Lo">1Lo</option>
+<option value="1S">1S</option>
+<option value="1T">1T</option>
+	</select>
+	<select class="edge" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="!">!</option>
+	  <option value="e">e</option>
+	</select>
+	<select class="ur" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="<">&lt;</option>
+	  <option value="<<">&lt;&lt;</option>
+	</select>
+      </span>
+
+      <!-- thid jump -->
+      <span class="third">
+	-
+	<select class="jname" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="4A">4A</option>
+<option value="4Lz">4Lz</option>
+<option value="4F">4F</option>
+<option value="4Lo">4Lo</option>
+<option value="4S">4S</option>
+<option value="4T">4T</option>
+<option value="3A">3A</option>
+<option value="3Lz">3Lz</option>
+<option value="3F">3F</option>
+<option value="3Lo">3Lo</option>
+<option value="3S">3S</option>
+<option value="3T">3T</option>
+<option value="2A">2A</option>
+<option value="2Lz">2Lz</option>
+<option value="2F">2F</option>
+<option value="2Lo">2Lo</option>
+<option value="2S">2S</option>
+<option value="2T">2T</option>
+<option value="1A">1A</option>
+<option value="1Lz">1Lz</option>
+<option value="1F">1F</option>
+<option value="1Lo">1Lo</option>
+<option value="1S">1S</option>
+<option value="1T">1T</option>
+	</select>
+	<select class="edge" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="!">!</option>
+	  <option value="e">e</option>
+	</select>
+	<select class="ur" onChange="recalc()">
+	  <option value=""></option>
+	<option value="<">&lt;</option>
+	  <option value="<<">&lt;&lt;</option>
+	</select>
+      </span>
+    </td>
+    <td>
+      <select class="repeated" onChange="recalc()">
+	<option value=""></option>
+	<option value="+REP">+REP</option>
+      </select>
+    </td>
+    <td>
+      <select class="bonus" onChange="recalc()">
+	<option value=""></option>
+	<option value="x">x</option>
+      </select>
+    </td>
+    <td>
+      <input class="goe" onChange="recalc()" type="number">
+    </input>
+    </td>
+    <td><span class="name"></span>
+    <td><span class="bv"></span>
+    <td><span class="goesov"></span>
+    <td><span class="score"></span>
+
+  </tr>
+
+
+  <tr id="jump8">
+    <td>Jump8</td>
+    <td>
+      <!-- jump type (solo/comb2/bomc3) -->
+      <select class="type" onChange="recalc()";>
+	<option value="solo">solo</option>
+	<option value="comb2">comb2</option>
+	<option value="comb3">comb3</option>
+      </select>
+      <!-- First jump -->
+      <span class="first">
+	<select class="jname" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="4A">4A</option>
+<option value="4Lz">4Lz</option>
+<option value="4F">4F</option>
+<option value="4Lo">4Lo</option>
+<option value="4S">4S</option>
+<option value="4T">4T</option>
+<option value="3A">3A</option>
+<option value="3Lz">3Lz</option>
+<option value="3F">3F</option>
+<option value="3Lo">3Lo</option>
+<option value="3S">3S</option>
+<option value="3T">3T</option>
+<option value="2A">2A</option>
+<option value="2Lz">2Lz</option>
+<option value="2F">2F</option>
+<option value="2Lo">2Lo</option>
+<option value="2S">2S</option>
+<option value="2T">2T</option>
+<option value="1A">1A</option>
+<option value="1Lz">1Lz</option>
+<option value="1F">1F</option>
+<option value="1Lo">1Lo</option>
+<option value="1S">1S</option>
+<option value="1T">1T</option>
+	</select>
+	<select class="edge" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="!">!</option>
+	  <option value="e">e</option>
+	</select>
+	<select class="ur" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="<">&lt;</option>
+	  <option value="<<">&lt;&lt;</option>
+	</select>
+      </span>
+
+      <!-- Second jump -->
+      <span class="second">
+	-
+	<select class="jname" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="4A">4A</option>
+<option value="4Lz">4Lz</option>
+<option value="4F">4F</option>
+<option value="4Lo">4Lo</option>
+<option value="4S">4S</option>
+<option value="4T">4T</option>
+<option value="3A">3A</option>
+<option value="3Lz">3Lz</option>
+<option value="3F">3F</option>
+<option value="3Lo">3Lo</option>
+<option value="3S">3S</option>
+<option value="3T">3T</option>
+<option value="2A">2A</option>
+<option value="2Lz">2Lz</option>
+<option value="2F">2F</option>
+<option value="2Lo">2Lo</option>
+<option value="2S">2S</option>
+<option value="2T">2T</option>
+<option value="1A">1A</option>
+<option value="1Lz">1Lz</option>
+<option value="1F">1F</option>
+<option value="1Lo">1Lo</option>
+<option value="1S">1S</option>
+<option value="1T">1T</option>
+	</select>
+	<select class="edge" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="!">!</option>
+	  <option value="e">e</option>
+	</select>
+	<select class="ur" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="<">&lt;</option>
+	  <option value="<<">&lt;&lt;</option>
+	</select>
+      </span>
+
+      <!-- thid jump -->
+      <span class="third">
+	-
+	<select class="jname" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="4A">4A</option>
+<option value="4Lz">4Lz</option>
+<option value="4F">4F</option>
+<option value="4Lo">4Lo</option>
+<option value="4S">4S</option>
+<option value="4T">4T</option>
+<option value="3A">3A</option>
+<option value="3Lz">3Lz</option>
+<option value="3F">3F</option>
+<option value="3Lo">3Lo</option>
+<option value="3S">3S</option>
+<option value="3T">3T</option>
+<option value="2A">2A</option>
+<option value="2Lz">2Lz</option>
+<option value="2F">2F</option>
+<option value="2Lo">2Lo</option>
+<option value="2S">2S</option>
+<option value="2T">2T</option>
+<option value="1A">1A</option>
+<option value="1Lz">1Lz</option>
+<option value="1F">1F</option>
+<option value="1Lo">1Lo</option>
+<option value="1S">1S</option>
+<option value="1T">1T</option>
+	</select>
+	<select class="edge" onChange="recalc();">
+	  <option value=""></option>
+	  <option value="!">!</option>
+	  <option value="e">e</option>
+	</select>
+	<select class="ur" onChange="recalc()">
+	  <option value=""></option>
+	<option value="<">&lt;</option>
+	  <option value="<<">&lt;&lt;</option>
+	</select>
+      </span>
+    </td>
+    <td>
+      <select class="repeated" onChange="recalc()">
+	<option value=""></option>
+	<option value="+REP">+REP</option>
+      </select>
+    </td>
+    <td>
+      <select class="bonus" onChange="recalc()">
+	<option value=""></option>
+	<option value="x">x</option>
+      </select>
+    </td>
+    <td>
+      <input class="goe" onChange="recalc()" type="number">
+    </input>
+    </td>
+    <td><span class="name"></span>
+    <td><span class="bv"></span>
+    <td><span class="goesov"></span>
+    <td><span class="score"></span>
+
+  </tr>
+
+
+  <!-- spin -->
+
+  <tr id="spin1">
+    <td>Spin1
+    <td>
+      <select class="flying" onChange="recalc();">
+	<option value=""></option>
+	<option value="F">F</option>
+      </select>
+      <select class="changefoot" onChange="recalc();">
+	<option value=""></option>
+	<option value="C">C</option>
+      </select>
+      <select class="position" onChange="recalc();">
+	<option value=""></option>
+	<option value="USp">USp</option>
+	<option value="LSp">LSp</option>
+	<option value="SSp">SSp</option>
+	<option value="CSp">CSp</option>
+	<option value="CoSp2p">CoSp2p</option>
+	<option value="CoSp3p">CoSp3p</option>
+      </select>
+      <select class="level" onChange="recalc();">
+	<option value=""></option>
+	<option value="B">B</option>
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	<option value="4">4</option>
+      </select>
+    </td>
+    <td><span class="repeated"></span>
+<td><span class="bonus"></span>
+    <td>
+      <input class="goe" onChange="recalc()" type="number">
+    </input>
+    <td><span class="name"></span>
+    <td><span class="bv"></span>
+    <td><span class="goesov"></span>
+    <td><span class="score"></span>
+
+  </tr>
+
+  <tr id="spin2">
+    <td>Spin2
+    <td>
+      <select class="flying" onChange="recalc();">
+	<option value=""></option>
+	<option value="F">F</option>
+      </select>
+      <select class="changefoot" onChange="recalc();">
+	<option value=""></option>
+	<option value="C">C</option>
+      </select>
+      <select class="position" onChange="recalc();">
+	<option value=""></option>
+	<option value="USp">USp</option>
+	<option value="LSp">LSp</option>
+	<option value="SSp">SSp</option>
+	<option value="CSp">CSp</option>
+	<option value="CoSp2p">CoSp2p</option>
+	<option value="CoSp3p">CoSp3p</option>
+      </select>
+      <select class="level" onChange="recalc();">
+	<option value=""></option>
+	<option value="B">B</option>
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	<option value="4">4</option>
+      </select>
+    </td>
+    <td><span class="repeated"></span>
+<td><span class="bonus"></span>
+    <td>
+      <input class="goe" onChange="recalc()" type="number">
+    </input>
+    <td><span class="name"></span>
+    <td><span class="bv"></span>
+    <td><span class="goesov"></span>
+    <td><span class="score"></span>
+
+  </tr>
+
+  <tr id="spin3">
+    <td>Spin3
+    <td>
+      <select class="flying" onChange="recalc();">
+	<option value=""></option>
+	<option value="F">F</option>
+      </select>
+      <select class="changefoot" onChange="recalc();">
+	<option value=""></option>
+	<option value="C">C</option>
+      </select>
+      <select class="position" onChange="recalc();">
+	<option value=""></option>
+	<option value="USp">USp</option>
+	<option value="LSp">LSp</option>
+	<option value="SSp">SSp</option>
+	<option value="CSp">CSp</option>
+	<option value="CoSp2p">CoSp2p</option>
+	<option value="CoSp3p">CoSp3p</option>
+      </select>
+      <select class="level" onChange="recalc();">
+	<option value=""></option>
+	<option value="B">B</option>
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	<option value="4">4</option>
+      </select>
+    </td>
+    <td><span class="repeated"></span>
+<td><span class="bonus"></span>
+    <td>
+      <input class="goe" onChange="recalc()" type="number">
+    </input>
+    <td><span class="name"></span>
+    <td><span class="bv"></span>
+    <td><span class="goesov"></span>
+    <td><span class="score"></span>
+
+  </tr>
+
+
+  <!-- StSq -->
+  <tr id="stsq1">
+    <td>StSq1
+    <td>
+      <select class="sname" onChange="recalc();">
+	<option value=""></option>
+	<option value="StSqB">StSqB</option>
+	<option value="StSq1">StSq1</option>
+	<option value="StSq2">StSq2</option>
+	<option value="StSq3">StSq3</option>
+	<option value="StSq4">StSq4</option>
+      </select>
+    </td>
+    <td><span class="repeated"></span>
+<td><span class="bonus"></span>
+    <td>
+      <input class="goe" onChange="recalc()" type="number">
+    </input>
+    <td><span class="name"></span>
+    <td><span class="bv"></span>
+    <td><span class="goesov"></span>
+    <td><span class="score"></span>
+
+  </tr>
+
+  <!-- Choreo -->
+  <tr id="chsq1">
+    <td>ChSq1
+    <td>
+      <select class="cname" onChange="recalc();">
+	<option value=""></option>
+	<option value="ChSq1">ChSq1</option>
+      </select>
+    </td>
+    <td><span class="repeated"></span>
+<td><span class="bonus"></span>
+    <td>
+      <input class="goe" onChange="recalc()" type="number">
+    </input>
+    <td><span class="name"></span>
+    <td><span class="bv"></span>
+    <td><span class="goesov"></span>
+    <td><span class="score"></span>
+
+  </tr>
+
+  <tr id="tes">
+    <td>Total
+    <td>
+    <td>
+    <td>
+    <td>
+    <td>
+    <td><span class="bv">
+    <td><span class="goesov">
+    <td><span class="score">
+</table>
+
+
+<!-- ################################################################ -->
+
+
+</body>
+</html>
