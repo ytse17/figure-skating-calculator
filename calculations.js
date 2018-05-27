@@ -107,6 +107,7 @@ function parse_elements(){
 	jump.goe = getval("jump", i, ".goe")
   jump.rep = getval("jump", i, ".repeated")
   if (parseFloat(jump.goe) < -3) {jump.goe = -3}
+  if (parseFloat(jump.goe) > 3) {jump.goe = 3}
 
 	// bv
 	var sum_bv = 0;
