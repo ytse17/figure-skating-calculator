@@ -12,7 +12,6 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script type="text/javascript" src="bvs.js"></script>
 <script type="text/javascript" src="calculations.js"></script>
-<script type="text/javascript" src="gtag.js"></script>
 </head>
 
 
@@ -1475,8 +1474,27 @@
 
 
 <!-- ################################################################ -->
+<title>Feedback Form</title>
+<h1>suggestions? comments? questions? tell me here!</h1>
 
-
+<form method="post" action="send_mail.php">
+<p>
+<label>First Name
+<input type="text" name="first_name" required>
+</label>
+</p>
+<p>
+<label>Email
+<input type="email" name="email_address">
+</label>
+</p>
+<p>
+<label>Comments
+<textarea name="comments" maxlength="500"></textarea>
+</label>
+</p>
+<p><button>Submit the form</button></p>
+</form>
 
 </body>
 </html>
