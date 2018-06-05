@@ -24,3 +24,8 @@ tr {
 td {
   background-color: lightblue;
 }
+
+label {
+  font-family: "Helvetica";
+  font-size: 10pt;
+}
