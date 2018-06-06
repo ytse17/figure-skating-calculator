@@ -26,6 +26,10 @@ td {
 }
 
 label {
-  font-family: "Helvetica";
+  font-family: "Helvetica", sans-serif;
   font-size: 10pt;
+}
+
+input[type=number]{
+  width: 77%;
 }
