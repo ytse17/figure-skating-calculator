@@ -232,13 +232,23 @@ function update_elements(){
     for (var i=1; i<=8; i++){
 	elem = result.elements.jumps[i];
 
-	vis = ['', 'visible', 'visible', 'visible'];
+	var vis = ['', 'visible', 'visible', 'visible'];
 	if (elem.num_jumps < 3) { vis[3] = 'hidden'; }
 	if (elem.num_jumps < 2) { vis[2] = 'hidden'; }
 
 	$("#jump" + i + " .first").css("visibility", vis[1]);
 	$("#jump" + i + " .second").css("visibility", vis[2]);
 	$("#jump" + i + " .third").css("visibility", vis[3]);
+
+  var edge_vis = ['', 'hidden', 'hidden', 'hidden']
+  for (var j=1; j<=elem.num_jumps; j++){
+      jn = jname_wo_rev(elem.executed[j].jname);
+      if (jn == "Lz" || jn == "F") { edge_vis[j] = 'visible'; }
+     }
+
+  $("#jump" + i + " .first" + " .edge").css("visibility", edge_vis[1]);
+  $("#jump" + i + " .Second" + " .edge").css("visibility", edge_vis[2]);
+  $("#jump" + i + " .third" + " .edge").css("visibility", edge_vis[3]);
 
 	update_element("jump", i, elem);
     }
