@@ -1,5 +1,5 @@
 //
-// score_calc.js
+// calculations.js
 //
 ////////////////////////////////////////////////////////////////
 
@@ -7,33 +7,19 @@ var result = {}
 
 function initialize(){
     result = {
-	discipline: "Men", segment: "SP",
 	elements: {
 	    jumps: [],
 	    spins: [],
 	    stsq: [],
 	    chsq: [],
 	},
-	components: {
-	    "SS": {name: "Skating Skills"}
-	},
-	tes: { bv: 0, goesov: 0, score: 0, comment: ""}
-    }
-    rules = {}
-    repetition_jump = {}
-    for (var i = 2; i<=4; i++){   // yet:
-	repetition_jump[i + "A"] = 0;
-	repetition_jump[i + "Lz"] = 0;
-	repetition_jump[i + "F"] = 0;
-	repetition_jump[i + "Lo"] = 0;
-	repetition_jump[i + "S"] = 0;
-	repetition_jump[i + "T"] = 0;
+	tes: { bv: 0, goesov: 0, score: 0}
     }
 }
+
 ////////////////////////////////////////////////////////////////
 // utils
 function normalize_float(f){
-    // return parseFloat(parseInt(f*100)/100);
     return parseFloat(f).toFixed(2)
 }
 function getval(category, num, selector){
@@ -52,9 +38,6 @@ function rev(jname){
 }
 function jname_wo_rev(jname){
     return jname.charAt(1) + jname.charAt(2);
-}
-function is_axel(jname){
-    if (jname.charAt(1) == "A") { return true; } else { return false; }
 }
 function dg_jump(jname){
     r = rev(jname)
@@ -139,7 +122,7 @@ function parse_elements(){
 	    sum_bv += parseFloat(bv);
 	}
 
-//converting goe
+  //converting goe
   switch (max_bv_jname) {
   case "4A":
     jump.convertgoe = parseFloat(jump.goe) * 5/36; break;
@@ -159,6 +142,7 @@ function parse_elements(){
 	if (sum_bv > 0){
 	    jump.bv = parseFloat(sum_bv);
 	    jump.goesov = parseFloat(max_bv) * jump.convertgoe;
+      if (isNaN(jump.goesov)) {jump.goesov = 0}
 	    jump.score = jump.bv + jump.goesov;
       if (jump.rep == "+REP") {jump.score -= (0.3 * parseFloat(bvsov[jname].bv))}
       if (jump.bonus == "x"){ jump.score += (0.1 * jump.bv) }
@@ -232,10 +216,6 @@ function parse_elements(){
 	result.tes.goesov += parseFloat(chsq.goesov);
 	result.tes.score += parseFloat(chsq.score);
     }
-
-    // result.elements.chsq[1] = { name: getval("chsq", 1, ".name"), goe: getval("chsq", 1, ".goe") }
-
-    // tes total
 }
 ////////////////
 // update
@@ -245,7 +225,6 @@ function update_element(type, i, elem){
     settext(type, i, ".bv", normalize_float(elem.bv));
     settext(type, i, ".goesov", normalize_float(elem.goesov));
     settext(type, i, ".score", normalize_float(elem.score));
-    settext(type, i, ".comment", elem.comment);
 }
 
 function update_elements(){
@@ -253,7 +232,7 @@ function update_elements(){
     for (var i=1; i<=8; i++){
 	elem = result.elements.jumps[i];
 
-	vis = ['', 'visible', 'visible', 'visible']
+	vis = ['', 'visible', 'visible', 'visible'];
 	if (elem.num_jumps < 3) { vis[3] = 'hidden'; }
 	if (elem.num_jumps < 2) { vis[2] = 'hidden'; }
 
@@ -279,180 +258,12 @@ function update_elements(){
     settext("tes", "", ".bv", normalize_float(result.tes.bv));
     settext("tes", "", ".goesov", normalize_float(result.tes.goesov));
     settext("tes", "", ".score", normalize_float(result.tes.score));
-    // comment
-    settext("tes_comment", "", "", result.tes.comment);
 }
 
-function enable_element(type, i){
-    settext(type, i, ".comment", "");
-    $("#" + type + i).css("background-color", "white");
-}
-function disable_element(type, i, comment){
-    settext(type, i, ".comment", comment);
-    $("#" + type + i).css("background-color", "lightgray");
-}
-function enable_all_elements(){
-    for (var i=1; i<=8; i++){ enable_element("jump", i) }
-    for (var i=1; i<=3; i++){ enable_element("spin", i) }
-    for (var i=1; i<=1; i++){ enable_element("stsq", i) }
-    for (var i=1; i<=1; i++){ enable_element("chsq", i) }
-}
-
-////////////////
-//
-function check_rules(){
-    enable_all_elements();
-
-
-    switch (result.segment){
-    case "SP":
-	// jump
-	for (var i=4; i<=8; i++){
-	    disable_element("jump", i);
-	}
-	// combination
-	var cj = 0;
-	var n_solo_axel = 0;
-	for (var i=1; i<=3; i++){
-	    // comb
-	    elem = result.elements.jumps[i];
-	    if (elem.num_jumps >= 3){ elem.comment = "* invalid combination jump fo SP"; }
-	    if (elem.num_jumps >= 2){
-		cj += 1;
-		if (cj > 1){ elem.comment = "* too many combination" }
-	    }
-	    if (elem.is_comb){
-		rev1 = rev(elem.executed[1].jname)
-		rev2 = rev(elem.executed[2].jname)
-
-		switch (result.discipline){
-		case "Men":
-		    if ((rev1 == 2 && rev2 == 3) || (rev1 == 3 && rev2 == 2) ||
-			(rev1 == 3 && rev2 == 3) ||
-			(rev1 == 4 && rev2 == 2) || (rev1 == 2 && rev2 == 4) ||
-			(rev1 == 4 && rev2 == 3) || (rev1 == 3 && rev2 == 4)){
-		    } else {
-			elem.comment = "* combination not suit"
-		    }
-		    break;
-		case "Ladies":
-		    if ((rev1 == 3 && rev2 == 2) || (rev1 == 2 && rev2 == 3) ||
-			(rev1 == 3 && rev2 == 3)){
-		    } else {
-			elem.comment = "* combination not suit"
-		    }
-		    break;
-		}
-	    }
-
-	    // axel
-	    if (elem.type == "solo" && is_axel(elem.executed[1].jname)){
-		rev1 = rev(elem.executed[1].jname)
-		switch (result.discipline){
-		case "Men":
-		    if (rev1 < 2){ elem.comment = "* invalid axel" } break;
-		case "Ladies":
-		    if (rev1 < 2 || rev1 > 3){ elem.comment = "* invalid axel" } break;
-		}
-		n_solo_axel += 1;
-	    }
-
-	}
-	if (n_solo_axel == 0){ result.tes.comment += "* [JUMP] Axel jump required \n" }
-	if (n_solo_axel > 1){ result.tes.comment += "* [JUMP] too many axel jump\n" }
-
-	// spin
-	var n_LSp = 0;
-	var n_cf_single_position = 0;
-	var n_ccosp = 0;
-	var n_flying = 0;
-	for (var i=1; i<=3; i++){
-	    elem = result.elements.spins[i]
-	    if (elem.bv == 0) break;
-	    if (elem.position == "LSp") { n_LSp += 1 }
-	    if (elem.flying && !elem.is_comb) { n_flying += 1 }
-	    if (elem.changefoot && !elem.is_comb){ n_cf_single_position += 1}
-	    if (elem.changefoot && elem.is_comb){ n_ccosp += 1 }
-	}
-	if (result.discipline == "Ladies"){
-	    if (n_LSp < 1){ result.tes.comment += "* [SPIN] LSp required for Ladies\n" }
-	} else {
-	    if (n_cf_single_position < 1){ result.tes.comment += "* [SPIN] Single Position w/changefoot Spin required for Men\n"}
-	}
-	if (n_flying < 1){ result.tes.comment += "* [SPIN] Flying Spin required\n" }
-	if (n_ccosp < 1){ result.tes.comment += "* [SPIN] CCoSp required\n" }
-
-	// chsq
-	disable_element("chsq", 1);
-
-
-	break;
-    case "FS":
-	// jump
-	if (result.discipline == "Ladies"){ disable_element("jump", 8); }
-    }
-
-}
-
-function update_repetition_jump(){
-    ar = ['A', 'Lz', 'F', 'Lo', 'S', 'T'];
-    for (var i=2; i<=4; i++){
-	len = ar.length;
-	for (var j=0; j<len; j++){
-	    // alert(".jr_" + i + ar[j])
-	    settext("repetition_jump", "", ".jr_" + i + ar[j], repetition_jump[i + ar[j]]);
-	}
-    }
-}
-////////////////
-// load
-
-function load_score (){
-
-    $('#category input[name=category]').val(['Men']);
-    $('#segment input[name=segment]').val(['SP']);
-
-    $('#jump1 .type').val("solo");
-    $('#jump1 .first .jname').val("4S");
-    $('#jump1 .goe').val("3");
-    $('#jump2 .type').val("comb2");
-    $('#jump2 .first .jname').val("4T");
-    $('#jump2 .second .jname').val("3T");
-    $('#jump2 .goe').val("3");
-    $('#jump3 .type').val("solo");
-    $('#jump3 .first .jname').val("3A");
-    $('#jump3 .bonus').val("x");
-    $('#jump3 .goe').val("3");
-
-    $('#spin1 .flying').val('F');
-    $('#spin1 .position').val('CSp');
-    $('#spin1 .level').val('4');
-    $('#spin1 .goe').val("3");
-    $('#spin2 .changefoot').val('C');
-    $('#spin2 .position').val('SSp');
-    $('#spin2 .level').val('4');
-    $('#spin2 .goe').val("3");
-    $('#spin3 .changefoot').val('C');
-    $('#spin3 .position').val('CoSp3p');
-    $('#spin3 .level').val('4');
-    $('#spin3 .goe').val("3");
-
-    $('#stsq1 .sname').val('StSq4');
-    $('#stsq1 .goe').val("3");
-
-    recalc();
-}
 
 function recalc(){
     initialize();
-    result.discipline = $("input[name='discipline']:checked").val();
-    result.segment = $("input[name='segment']:checked").val();
-
     parse_elements();
-
-    check_rules();
     update_elements();
-    update_repetition_jump();
-    // parse_components();
 
 }
